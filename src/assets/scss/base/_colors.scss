@@ -1,0 +1,95 @@
+$primary-color: #44c7ab;
+$secondary-color: #c3faee;
+$primary-text-color: #313b52;
+$secondary-text-color: #989da8;
+
+$primary-color-light: lighten($primary-color, 10%);
+$primary-color-xlight: lighten($primary-color, 20%);
+$primary-color-xxlight: lighten($primary-color, 30%);
+
+$primary-color-dark: darken($primary-color, 10%);
+$primary-color-xdark: darken($primary-color, 20%);
+$primary-color-xxdark: darken($primary-color, 30%);
+
+$secondary-color-light: lighten($secondary-color, 10%);
+$secondary-color-xlight: lighten($secondary-color, 20%);
+$secondary-color-xxlight: lighten($secondary-color, 30%);
+
+$secondary-color-dark: darken($secondary-color, 10%);
+$secondary-color-xdark: darken($secondary-color, 20%);
+$secondary-color-xxdark: darken($secondary-color, 30%);
+
+$border-color: $primary-color-dark;
+$white: #ffffff;
+
+.bg-primary {
+    background-color: $primary-color !important;
+}
+
+.bg-light {
+    background-color: $primary-color-light;
+}
+
+.bg-xlight {
+    background-color: $primary-color-xlight;
+}
+
+.bg-xxlight {
+    background-color: $primary-color-xxlight;
+}
+
+.bg-dark {
+    background-color: $primary-color-dark;
+}
+
+.bg-xdark {
+    background-color: $primary-color-xdark;
+}
+
+.bg-xxdark {
+    background-color: $primary-color-xxdark;
+}
+
+.bg-secondary {
+    background-color: $secondary-color !important;
+}
+
+.bg-secondary-light {
+    background-color: $secondary-color-light;
+}
+
+.bg-secondary-xlight {
+    background-color: $secondary-color-xlight;
+}
+
+.bg-secondary-xxlight {
+    background-color: $secondary-color-xxlight;
+}
+
+.bg-secondary-dark {
+    background-color: $secondary-color-dark;
+}
+
+.bg-secondary-xdark {
+    background-color: $secondary-color-xdark;
+}
+
+.bg-secondary-xxdark {
+    background-color: $secondary-color-xxdark;
+}
+
+.bg-white {
+    background-color: $white !important;
+}
+
+.text-primary {
+    color: $primary-text-color;
+}
+
+.text-secondary {
+    color: $secondary-text-color;
+}
+
+.border-primary {
+    border-color: $primary-color-xdark;
+}

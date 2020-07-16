@@ -1,0 +1,28 @@
+.bg-svg {
+    position: fixed;
+    transform: translate(-30%, 63%) scale(0.5);
+}
+
+@media screen and (max-width: 768px) {
+    .bg-svg {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 960px) {
+    .bg-svg {
+        transform: translate(-24%, 63%) scale(0.8);
+    }
+}
+
+@media screen and (min-width: 1264px) {
+    .bg-svg {
+        transform: translate(-6%, 63%);
+    }
+}
+
+@media screen and (min-width: 1900px) {
+    .bg-svg {
+        transform: translate(46%, 63%);
+    }
+}
