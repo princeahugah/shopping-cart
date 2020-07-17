@@ -23,73 +23,77 @@ $border-color: $primary-color-dark;
 $white: #ffffff;
 
 .bg-primary {
-    background-color: $primary-color !important;
+  background-color: $primary-color !important;
 }
 
 .bg-light {
-    background-color: $primary-color-light;
+  background-color: $primary-color-light;
 }
 
 .bg-xlight {
-    background-color: $primary-color-xlight;
+  background-color: $primary-color-xlight;
 }
 
 .bg-xxlight {
-    background-color: $primary-color-xxlight;
+  background-color: $primary-color-xxlight;
 }
 
 .bg-dark {
-    background-color: $primary-color-dark;
+  background-color: $primary-color-dark;
 }
 
 .bg-xdark {
-    background-color: $primary-color-xdark;
+  background-color: $primary-color-xdark;
 }
 
 .bg-xxdark {
-    background-color: $primary-color-xxdark;
+  background-color: $primary-color-xxdark;
 }
 
 .bg-secondary {
-    background-color: $secondary-color !important;
+  background-color: $secondary-color !important;
 }
 
 .bg-secondary-light {
-    background-color: $secondary-color-light;
+  background-color: $secondary-color-light;
 }
 
 .bg-secondary-xlight {
-    background-color: $secondary-color-xlight;
+  background-color: $secondary-color-xlight;
 }
 
 .bg-secondary-xxlight {
-    background-color: $secondary-color-xxlight;
+  background-color: $secondary-color-xxlight;
 }
 
 .bg-secondary-dark {
-    background-color: $secondary-color-dark;
+  background-color: $secondary-color-dark;
 }
 
 .bg-secondary-xdark {
-    background-color: $secondary-color-xdark;
+  background-color: $secondary-color-xdark;
 }
 
 .bg-secondary-xxdark {
-    background-color: $secondary-color-xxdark;
+  background-color: $secondary-color-xxdark;
 }
 
 .bg-white {
-    background-color: $white !important;
+  background-color: $white !important;
 }
 
 .text-primary {
-    color: $primary-text-color;
+  color: $primary-text-color !important;
 }
 
 .text-secondary {
-    color: $secondary-text-color;
+  color: $secondary-text-color;
+}
+
+.text-theme-primary {
+  color: $primary-color;
 }
 
 .border-primary {
-    border-color: $primary-color-xdark;
+  border-color: $primary-color-xdark;
 }

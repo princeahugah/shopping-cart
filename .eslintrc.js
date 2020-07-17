@@ -66,7 +66,8 @@ module.exports = {
         svg: 'always',
         math: 'always'
       }
-    ]
+    ],
+    'vue/attribute-hyphenation': ['error', 'always']
   },
   overrides: [
     {

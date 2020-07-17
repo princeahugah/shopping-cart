@@ -8,9 +8,7 @@
 
   @Component({
     components: { SignupForm },
-    metaInfo: {
-      title: 'Sign Up | Amazing Online Shopping'
-    }
+    metaInfo: { title: 'Sign Up | Amazing Online Store' }
   })
   export default class Signup extends Vue {}
 </script>

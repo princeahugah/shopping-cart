@@ -7,7 +7,7 @@ import Signin from '../views/auth/Signin.vue';
 import Signup from '../views/auth/Signup.vue';
 import ShoppingCart from '../views/ShoppingCart.vue';
 import ProductDetails from '../views/ProductDetails.vue';
-import AuthApi from '../services/api/AuthApi';
+import { auth } from '../services/firebase';
 
 Vue.use(VueRouter);
 
@@ -25,9 +25,10 @@ const routes: Array<RouteConfig> = [
         component: ShoppingCart
       },
       {
-        path: '/product/:productId',
+        path: '/products/:productId',
         name: 'ProductDetails',
-        component: ProductDetails
+        component: ProductDetails,
+        props: true
       }
     ]
   },
@@ -67,26 +68,24 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   if (to.path === '/signout') {
-    AuthApi.signOut().then(() => {
-      localStorage.clear();
+    auth.signOut().then(() => {
       window.location.href = '/';
     });
-  }
+  } else {
+    const requiresAuth = to.matched.some((record) => record.meta.requiresAuth);
 
-  const requiresAuth = to.matched.some((record) => record.meta.requiresAuth);
-  const loggedInUser = localStorage.getItem('loggedInUser');
-
-  if (requiresAuth && !loggedInUser) {
-    return next(`/signin/?redirect=${to.fullPath}`);
-  }
-  if (!requiresAuth && loggedInUser) {
-    if (to.query.redirect) {
-      return next(to.query.redirect as string);
+    if (requiresAuth && !auth.currentUser) {
+      return next(`/signin/?redirect=${to.fullPath}`);
     }
-    return next('/');
-  }
+    if (!requiresAuth && auth.currentUser) {
+      if (to.query.redirect) {
+        return next(to.query.redirect as string);
+      }
+      return next('/');
+    }
 
-  return next();
+    return next();
+  }
 });
 
 export default router;

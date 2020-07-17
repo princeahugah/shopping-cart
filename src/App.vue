@@ -7,15 +7,8 @@
 <script lang="ts">
   import { Component, Vue } from 'vue-property-decorator';
 
-  @Component({
-    components: {}
-  })
+  @Component
   export default class App extends Vue {}
 </script>
 
 <style src="./assets/scss/main.scss" lang="scss"></style>
-<style lang="scss" scoped>
-  .v-application {
-    background-image: url('./assets/img/bg.svg') !important;
-  }
-</style>

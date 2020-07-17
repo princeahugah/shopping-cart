@@ -1,11 +1,14 @@
 .v-application {
-    font-family: Catamaran, serif !important;
+  font-family: Nunito, serif !important;
+  color: $primary-text-color !important;
+  .title {
     color: $primary-text-color !important;
+  }
 }
 
 .v-text-field--outlined.v-input--has-state fieldset,
 .v-text-field--outlined.v-input--is-focused fieldset {
-    border: 1px solid !important;
+  border: 1px solid !important;
 }
 
 .v-text-field--enclosed .v-input__append-inner,
@@ -16,59 +19,59 @@
 .v-text-field--full-width .v-input__append-outer,
 .v-text-field--full-width .v-input__prepend-inner,
 .v-text-field--full-width .v-input__prepend-outer {
-    margin-top: 11px !important;
+  margin-top: 11px !important;
 }
 
 .v-text-field {
-    .v-input__slot {
-        min-height: 46px !important;
-    }
+  .v-input__slot {
+    min-height: 46px !important;
+  }
 
-    .v-label {
-        top: 14px !important;
-    }
+  .v-label {
+    top: 14px !important;
+  }
 
-    .v-label--active {
-        top: 18px !important;
-    }
+  .v-label--active {
+    top: 18px !important;
+  }
 
-    input {
-        background-color: transparent !important;
-        font-size: 1.2rem;
-        font-weight: 400;
-        color: $primary-text-color !important;
-    }
+  input {
+    background-color: transparent !important;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: $primary-text-color !important;
+  }
 }
 
 .v-data-table {
-    &.clickable {
-        tbody {
-            td {
-                cursor: pointer;
-            }
-        }
-    }
-
-    thead {
-        th {
-            font-size: 14px;
-        }
-    }
-
+  &.clickable {
     tbody {
-        td {
-            font-size: 16px;
-            font-weight: 500;
-
-            .v-chip {
-                line-height: 0.9rem;
-                height: auto;
-                font-size: 0.64rem;
-            }
-
-            a {
-                text-decoration: none;
-            }
-        }
+      td {
+        cursor: pointer;
+      }
     }
+  }
+
+  thead {
+    th {
+      font-size: 14px;
+    }
+  }
+
+  tbody {
+    td {
+      font-size: 16px;
+      font-weight: 500;
+
+      .v-chip {
+        line-height: 0.9rem;
+        height: auto;
+        font-size: 0.64rem;
+      }
+
+      a {
+        text-decoration: none;
+      }
+    }
+  }
 }

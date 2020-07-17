@@ -10,11 +10,15 @@
 <script lang="ts">
   import { Component, Vue } from 'vue-property-decorator';
 
-  @Component({
-    components: {}
-  })
+  @Component
   export default class AuthLayout extends Vue {}
 </script>
+
+<style lang="scss" scoped>
+  .v-main {
+    background-image: url('../../assets/img/bg.svg') !important;
+  }
+</style>
 
 <style lang="scss">
   .sign-up-form,

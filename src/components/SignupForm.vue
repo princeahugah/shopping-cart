@@ -16,7 +16,7 @@
                                 class="mb-4"
                                 color="error"
                                 elevation="0"
-                                @input="errorMessage = ''"
+                                @input="errorMessage = null"
                                 :timeout="10000"
                                 top
                                 :value="true">
@@ -82,12 +82,12 @@
 
 <script lang="ts">
   import { Component, Vue } from 'vue-property-decorator';
-  import { getModule } from 'vuex-module-decorators';
-  import Auth from '../store/modules/auth';
+  import { UserModule } from '../store/modules/user';
   import { validationMixin } from 'vuelidate';
   import { required, minLength, email } from 'vuelidate/lib/validators';
   import { mdiEye, mdiEyeOff } from '@mdi/js';
   import Logo from './atoms/Logo.vue';
+  import { IError } from '../services/interfaces/Error';
 
   @Component({
     components: { Logo },
@@ -98,9 +98,6 @@
         emailAddress: { required, email },
         password: { required, minLength: minLength(6) }
       }
-    },
-    metaInfo: {
-      title: 'Sign Up | Online Shopping'
     }
   })
   export default class SignupForm extends Vue {
@@ -113,9 +110,16 @@
       password: ''
     };
     private requiredFieldMessage = 'This field is required';
-    private authStore = getModule(Auth);
     private loading = false;
-    private errorMessage = '';
+    private error: IError | null = null;
+
+    get errorMessage(): string | null {
+      return UserModule.error?.message ?? null;
+    }
+
+    set errorMessage(value: string | null) {
+      UserModule.ClearError();
+    }
 
     get nameErrors(): string[] {
       const errors: string[] = [];
@@ -143,21 +147,16 @@
       return errors;
     }
 
-    submitForm(): void {
+    private submitForm(): void {
       this.$v.$touch();
       if (!this.$v.$invalid) {
         this.loading = true;
-        this.authStore
-          .createUser(this.form)
-          .then(() => {
+        UserModule.CreateUser(this.form).then(() => {
+          this.loading = false;
+          if (!UserModule.error) {
             this.$router.push('/');
-          })
-          .catch(() => {
-            this.errorMessage = this.authStore.errorMessage as string;
-          })
-          .finally(() => {
-            this.loading = false;
-          });
+          }
+        });
       }
     }
   }
