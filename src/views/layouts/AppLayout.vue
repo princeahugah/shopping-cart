@@ -2,7 +2,8 @@
     <transition name="fade"
                 mode="out-in">
         <v-main class="d-flex justify-center align-center">
-            <div class="toolbar pl-5 pt-2 pr-2">
+            <div class="toolbar pl-5 pt-1 pr-2"
+                 v-if="$route.name === 'ProductDetails'">
                 <router-link to="/signout"
                              class="text-primary">
                     Logout
@@ -65,6 +66,8 @@
     background-color: #f1f5f9;
     .toolbar {
       position: fixed;
+      height: 50px;
+      z-index: 3;
       top: 0;
       width: 100%;
       display: flex;

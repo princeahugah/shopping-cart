@@ -1,6 +1,13 @@
 <template>
-    <v-container class="product-details">
-        <v-row dense
+    <v-container class="product-details"
+                 :class="{loading: !product.id}">
+        <v-progress-circular v-if="!product.id"
+                             :size="70"
+                             value="60"
+                             color="primary"
+                             indeterminate />
+        <v-row v-else
+               dense
                class="d-flex align-center justify-center">
             <v-col cols="10"
                    sm="8"
@@ -70,11 +77,11 @@
     product = ProductModule;
     mdiArrowLeftThick = mdiArrowLeftThick;
 
-    private created(): void {
+    created(): void {
       ProductModule.GetProductById(this.productId);
     }
 
-    private beforeDestroy(): void {
+    beforeDestroy(): void {
       ProductModule.ResetProduct();
     }
 
@@ -97,6 +104,11 @@
 
 <style lang="scss" scoped>
   .product-details {
+    &.loading {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
     .v-icon {
       position: absolute;
       top: 10px;
@@ -135,7 +147,12 @@
       margin: 20px;
       width: 80%;
     }
-    @media screen and (max-width: 960px) {
+    @media screen and (max-width: 60em) {
+      position: relative;
+      z-index: 2;
+      margin-top: 60px;
+      max-height: calc(100vh - 60px);
+      overflow: scroll;
       .v-image {
         width: 60%;
         left: 15%;

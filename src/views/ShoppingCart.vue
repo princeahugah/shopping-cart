@@ -1,6 +1,13 @@
 <template>
-    <v-container class="shopping-cart">
-        <v-row class="d-flex justify-center align-center">
+    <v-container class="shopping-cart"
+                 :class="{loading: !products.length}">
+        <v-progress-circular v-if="!products.length"
+                             :size="70"
+                             value="60"
+                             color="primary"
+                             indeterminate />
+        <v-row v-else
+               class="d-flex justify-center align-center">
             <v-col cols="11"
                    sm="10"
                    md="4"
@@ -19,6 +26,7 @@
                         <v-icon light
                                 size="48">{{ mdiAccountCircle }}</v-icon>
                     </div>
+
                     <product-listing :products="products" />
                 </v-card>
             </v-col>
@@ -45,7 +53,7 @@
       return ProductModule.products;
     }
 
-    private created(): void {
+    created(): void {
       ProductModule.GetProducts();
     }
   }
@@ -54,6 +62,11 @@
 <style lang="scss" scoped>
   .shopping-cart {
     display: flex;
+    &.loading {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
     .v-card {
       border: 1px solid #d4d7dd;
       .account {
