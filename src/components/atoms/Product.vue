@@ -6,6 +6,7 @@
             <v-btn color="primary"
                    depressed
                    small
+                   class="add-to-cart"
                    @click="handleClick">
                 Add to Cart
             </v-btn>

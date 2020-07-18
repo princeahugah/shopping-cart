@@ -5,9 +5,11 @@
             <div class="qty-icons">
                 <v-icon light
                         size="24"
+                        class="increase-quantity"
                         @click="increaseQuantity">{{ mdiArrowUpCircle }}</v-icon>
                 <v-icon light
                         size="24"
+                        class="decrease-quantity"
                         @click="decreaseQuantity">{{ mdiArrowDownCircle }}</v-icon>
             </div>
         </div>
@@ -15,7 +17,13 @@
             <div class="price text-theme-primary">
                 {{ cartItem.price }}<span class="pr-1">{{ cartItem.currency }}</span> each
             </div>
-            <div class="quantity">Quantity: <span>{{ cartItem.quantity }}</span></div>
+            <div class="quantity">
+                Quantity:
+                <transition name="fade"
+                            mode="out-in">
+                    <span :key="cartItem.quantity">{{ cartItem.quantity }}</span>
+                </transition>
+            </div>
         </div>
     </div>
 </template>

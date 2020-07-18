@@ -29,7 +29,7 @@
     }
 
     private navigateToProductDetails(productId: string) {
-      this.$router.push(`products/${productId}`);
+      this.$router.push(`/products/${productId}`);
     }
   }
 </script>

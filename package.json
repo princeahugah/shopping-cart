@@ -5,7 +5,8 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "test:unit": "vue-cli-service test:unit",
+    "test:unit": "vue-cli-service test:unit --colors",
+    "test:unit:debug": "vue-cli-service test:unit --colors --inspect-brk",
     "test:e2e": "vue-cli-service test:e2e",
     "lint": "vue-cli-service lint"
   },
@@ -26,6 +27,7 @@
     "@mdi/js": "^5.3.45",
     "@types/chai": "^4.2.11",
     "@types/mocha": "^8.0.0",
+    "@types/sinon": "^9.0.4",
     "@types/vuelidate": "^0.7.13",
     "@typescript-eslint/eslint-plugin": "^3.6.1",
     "@typescript-eslint/parser": "^3.6.1",
@@ -48,6 +50,7 @@
     "prettier": "^2.0.5",
     "sass": "^1.26.10",
     "sass-loader": "^9.0.2",
+    "sinon": "^9.0.2",
     "typescript": "~3.9.3",
     "vue-template-compiler": "^2.6.11"
   }

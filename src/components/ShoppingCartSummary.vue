@@ -5,12 +5,15 @@
                  alt="shopping cart" />
         </div>
         <div class="summary-content pt-4">
-            <cart-item v-for="cartItem in cart.cartItems"
-                       :key="cartItem.productId"
-                       :cart-item="cartItem"
-                       class="pb-3"
-                       @increaseProductQuantity="increaseProductQuantity"
-                       @decreaseProductQuantity="decreaseProductQuantity" />
+            <transition-group name="cart"
+                              tag="div">
+                <cart-item v-for="cartItem in cart.cartItems"
+                           :key="cartItem.productId"
+                           :cart-item="cartItem"
+                           class="pb-3"
+                           @increaseProductQuantity="increaseProductQuantity"
+                           @decreaseProductQuantity="decreaseProductQuantity" />
+            </transition-group>
         </div>
         <div class="summary-footer pt-5">
             <div class="total-quantity">Total Quantity: <span class="text-primary">{{ cart.totalCartQuantity }}</span></div>
@@ -28,7 +31,13 @@
                depressed
                large
                width="100%">
-            Checkout (<span class="amount"><span class="currency">{{ cart.cartItemCurrency }}</span>{{ cart.totalCartAmount }}</span>)
+            Checkout (
+            <transition name="fade"
+                        mode="out-in">
+                <span :key="cart.totalCartAmount"
+                      class="amount"><span class="currency">{{ cart.cartItemCurrency }}</span>{{ cart.totalCartAmount }}</span>
+            </transition>
+            )
         </v-btn>
     </div>
 </template>
@@ -69,6 +78,7 @@
       border-bottom: 2px solid #ececec;
       img {
         width: 40px;
+        height: 40px;
       }
     }
     .summary-footer {
@@ -105,6 +115,15 @@
         font-weight: 500;
         margin-right: -3px;
       }
+    }
+    .cart-enter-active,
+    .cart-leave-active {
+      transition: all 1s;
+    }
+    .cart-enter,
+    .cart-leave-to {
+      opacity: 0;
+      transform: translateY(30px);
     }
     @media screen and (max-width: 1264px) {
       padding: 0;
