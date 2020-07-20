@@ -1,11 +1,6 @@
 <template>
-    <v-container class="sign-in-form">
-        <transition name="slideInLeft">
-            <img class="bg-svg"
-                 v-if="animate"
-                 src="@img/50277.svg" />
-        </transition>
-        <v-row class="row-block"
+    <div class="sign-in-form">
+        <v-row class="align-center justify-center"
                dense>
             <v-col cols="10"
                    sm="8"
@@ -68,7 +63,7 @@
                 </v-card>
             </v-col>
         </v-row>
-    </v-container>
+    </div>
 </template>
 
 <script lang="ts">
@@ -101,7 +96,6 @@
     private requiredFieldMessage = 'This field is required';
     private loading = false;
     private error: IError | null = null;
-    private animate = false;
 
     get errorMessage(): string | null {
       return UserModule.error?.message ?? null;
@@ -126,12 +120,6 @@
       if (!this.$v.form.password!.required) errors.push(this.requiredFieldMessage);
 
       return errors;
-    }
-
-    mounted(): void {
-      this.$nextTick(() => {
-        this.animate = true;
-      });
     }
 
     private submitForm(): void {

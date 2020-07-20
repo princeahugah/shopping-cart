@@ -1,11 +1,6 @@
 <template>
-    <v-container class="sign-up-form">
-        <transition name="slideInLeft">
-            <img class="bg-svg"
-                 v-if="animate"
-                 src="@img/50277.svg" />
-        </transition>
-        <v-row class="row-block"
+    <div class="sign-up-form">
+        <v-row class="align-center justify-center"
                dense>
             <v-col cols="10"
                    sm="8"
@@ -80,7 +75,7 @@
                 </v-card>
             </v-col>
         </v-row>
-    </v-container>
+    </div>
 </template>
 
 <script lang="ts">
@@ -151,9 +146,7 @@
     }
 
     mounted(): void {
-      this.$nextTick(() => {
-        this.animate = true;
-      });
+      this.animate = true;
     }
 
     private submitForm(): void {

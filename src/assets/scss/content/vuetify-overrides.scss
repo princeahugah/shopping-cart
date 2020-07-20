@@ -24,6 +24,10 @@
     margin-top: 11px !important;
 }
 
+.v-application--is-ltr .v-text-field--outlined.v-text-field--rounded legend {
+    background-color: #fdfdfd;
+}
+
 .v-text-field {
     .v-input__slot {
         min-height: 46px !important;

@@ -2,7 +2,15 @@
     <transition name="fade"
                 mode="out-in">
         <v-main>
-            <router-view />
+            <transition name="slideInLeft">
+                <div class="bg-svg"
+                     v-if="animate">
+                    <img src="@img/50277.svg" />
+                </div>
+            </transition>
+            <v-container>
+                <router-view />
+            </v-container>
         </v-main>
     </transition>
 </template>
@@ -11,7 +19,13 @@
   import { Component, Vue } from 'vue-property-decorator';
 
   @Component
-  export default class AuthLayout extends Vue {}
+  export default class AuthLayout extends Vue {
+    private animate = false;
+
+    mounted(): void {
+      this.animate = true;
+    }
+  }
 </script>
 
 <style lang="scss" scoped>
@@ -21,9 +35,14 @@
 </style>
 
 <style lang="scss">
+  .sign-in-form {
+    transform: translateY(25%);
+  }
+  .sign-up-form {
+    transform: translateY(17%);
+  }
   .sign-up-form,
   .sign-in-form {
-    height: 100%;
     .sign-up-link,
     .sign-in-link {
       font-size: 1.1rem;
@@ -34,15 +53,6 @@
         }
       }
     }
-    .row-block {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: inherit;
-      & > div {
-        transform: translateY(-20%);
-      }
-    }
     .v-card {
       padding: 30px 60px;
       .v-btn {
@@ -51,16 +61,6 @@
     }
     h2.has-error {
       margin-top: 50px;
-    }
-    @media screen and (max-height: 859px) {
-      .row-block {
-        & > div {
-          transform: none;
-        }
-      }
-      .bg-svg {
-        display: none;
-      }
     }
   }
 </style>
