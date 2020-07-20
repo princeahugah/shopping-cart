@@ -1,6 +1,7 @@
 .bg-svg {
     position: fixed;
     transform: translate(-30%, 63%) scale(0.5);
+    -webkit-transform: translate(-30%, 63%) scale(0.5);
 }
 
 @-webkit-keyframes slideInLeft {
@@ -38,6 +39,7 @@
 @media screen and (min-width: 960px) {
     .bg-svg {
         transform: translate(-24%, 63%) scale(0.8);
+        -webkit-transform: translate(-24%, 63%) scale(0.8);
     }
 
     @-webkit-keyframes slideInLeft {
@@ -70,6 +72,7 @@
 @media screen and (min-width: 1264px) {
     .bg-svg {
         transform: translate(-6%, 63%);
+        -webkit-transform: translate(-6%, 63%);
     }
 
     @-webkit-keyframes slideInLeft {
@@ -102,6 +105,7 @@
 @media screen and (min-width: 1900px) {
     .bg-svg {
         transform: translate(46%, 63%);
+        -webkit-transform: translate(46%, 63%);
     }
 
     @-webkit-keyframes slideInLeft {

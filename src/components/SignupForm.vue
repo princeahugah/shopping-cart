@@ -151,7 +151,9 @@
     }
 
     mounted(): void {
-      this.animate = true;
+      this.$nextTick(() => {
+        this.animate = true;
+      });
     }
 
     private submitForm(): void {
