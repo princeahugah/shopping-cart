@@ -1,4 +1,5 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
+/* eslint-disable @typescript-eslint/no-var-requires */
+const Dotenv = require('dotenv-webpack');
 const path = require('path');
 
 module.exports = {
@@ -7,6 +8,7 @@ module.exports = {
       config.devServer = {
         port: 8088
       };
+      config.plugins.push(new Dotenv({}));
     }
   },
   chainWebpack: (config) => {

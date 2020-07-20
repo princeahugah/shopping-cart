@@ -3,13 +3,13 @@ import 'firebase/auth';
 import 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyDWAMsA2L2sFHofNrPJHfYCfmfWcmE_tSM',
-  authDomain: 'shopping-cart-af2dc.firebaseapp.com',
-  databaseURL: 'https://shopping-cart-af2dc.firebaseio.com',
-  projectId: 'shopping-cart-af2dc',
-  storageBucket: 'shopping-cart-af2dc.appspot.com',
-  messagingSenderId: '796626809357',
-  appId: '1:796626809357:web:618b43efebe1e195f9db44'
+  apiKey: process.env.apiKey as string,
+  authDomain: process.env.authDomain as string,
+  databaseURL: process.env.databaseURL as string,
+  projectId: process.env.projectId as string,
+  storageBucket: process.env.storageBucket as string,
+  messagingSenderId: process.env.messagingSenderId as string,
+  appId: process.env.appId as string
 };
 
 let firebaseService: any = { db: {}, auth: {}, usersCollection: {}, productsCollection: {}, ordersCollection: {} };
