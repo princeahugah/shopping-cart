@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const Dotenv = require('dotenv-webpack');
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
   configureWebpack: (config) => {
@@ -9,6 +10,20 @@ module.exports = {
         port: 8088
       };
       config.plugins.push(new Dotenv({}));
+    } else {
+      config.plugins.push(
+        new webpack.DefinePlugin({
+          'process.env': {
+            apiKey: JSON.stringify(process.env.apiKey),
+            authDomain: JSON.stringify(process.env.authDomain),
+            databaseURL: JSON.stringify(process.env.databaseURL),
+            projectId: JSON.stringify(process.env.projectId),
+            storageBucket: JSON.stringify(process.env.storageBucket),
+            messagingSenderId: JSON.stringify(process.env.messagingSenderId),
+            appId: JSON.stringify(process.env.appId)
+          }
+        })
+      );
     }
   },
   chainWebpack: (config) => {

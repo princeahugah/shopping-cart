@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "env && vue-cli-service build",
     "test:unit": "vue-cli-service test:unit --colors",
     "test:unit:debug": "vue-cli-service test:unit --colors --inspect-brk",
     "test:e2e": "vue-cli-service test:e2e",
@@ -53,6 +53,7 @@
     "sass-loader": "^9.0.2",
     "sinon": "^9.0.2",
     "typescript": "~3.9.7",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.6.11",
+    "webpack": "^4.43.0"
   }
 }
