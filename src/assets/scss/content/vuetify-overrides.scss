@@ -28,6 +28,10 @@
     background-color: #fdfdfd;
 }
 
+.v-btn__content {
+    line-height: 1 !important;
+}
+
 .v-text-field {
     .v-input__slot {
         min-height: 46px !important;

@@ -55,9 +55,13 @@
         letter-spacing: normal;
       }
     }
+    .description {
+      line-height: 1.5;
+    }
     .price {
       font-weight: 700;
       letter-spacing: 1.2px;
+      line-height: 1.5;
     }
   }
 </style>

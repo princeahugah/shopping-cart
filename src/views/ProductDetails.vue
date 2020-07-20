@@ -115,10 +115,14 @@
       justify-content: center;
       align-items: center;
     }
-    .v-icon {
-      position: absolute;
-      top: 10px;
-      left: 10px;
+    .back-icon {
+      display: block;
+      cursor: pointer;
+      .v-icon {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+      }
     }
     .v-card {
       border: 1px solid #dee1e5;
@@ -147,6 +151,10 @@
       .v-btn {
         font-weight: 700;
         padding: 15px 30px;
+      }
+      .description,
+      .founded {
+        line-height: 1.5;
       }
     }
     .v-image {
