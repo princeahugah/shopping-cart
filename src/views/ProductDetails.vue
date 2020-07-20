@@ -153,7 +153,7 @@
       margin: 20px;
       width: 80%;
     }
-    @media screen and (max-width: 60em) {
+    @media screen and (max-width: 960px) {
       position: relative;
       z-index: 2;
       margin-top: 60px;

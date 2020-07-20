@@ -1,6 +1,6 @@
 <template>
     <v-container class="shopping-cart"
-                 :class="{loading: !products.length}">
+                 :class="{ loading: !products.length }">
         <v-progress-circular v-if="!products.length"
                              :size="70"
                              value="60"
@@ -75,8 +75,11 @@
         border-bottom: 2px solid #ececec;
       }
     }
-    @media screen and (min-width: 95em) {
-      max-width: 88em;
+    @media screen and (min-width: 1520px) {
+      max-width: 1408px;
+    }
+    @media (min-width: 1820px) {
+      max-width: 1785px;
     }
   }
 </style>

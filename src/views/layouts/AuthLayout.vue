@@ -52,5 +52,15 @@
     h2.has-error {
       margin-top: 50px;
     }
+    @media screen and (max-height: 859px) {
+      .row-block {
+        & > div {
+          transform: none;
+        }
+      }
+      .bg-svg {
+        display: none;
+      }
+    }
   }
 </style>
