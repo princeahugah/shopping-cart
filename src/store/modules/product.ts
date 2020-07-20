@@ -2,7 +2,7 @@ import { Module, VuexModule, Mutation, Action, getModule } from 'vuex-module-dec
 import store from '../index';
 import { ProductState } from '../../services/interfaces/ProductState';
 import { IError } from '../../services/interfaces/Error';
-import { productsCollection } from '../../services/firebase';
+import fb from '../../services/firebase';
 
 @Module({ name: 'product', store, dynamic: true })
 class Product extends VuexModule implements ProductState {
@@ -47,11 +47,11 @@ class Product extends VuexModule implements ProductState {
 
   @Action
   public GetProducts(): void {
-    productsCollection
+    fb.productsCollection
       .get()
-      .then((productsSnapshot) => productsSnapshot.docs)
-      .then((docs) => {
-        const products = docs.map((doc) => Object.assign({}, { id: doc.id }, doc.data())) as ProductState[];
+      .then((productsSnapshot: any) => productsSnapshot.docs)
+      .then((docs: any) => {
+        const products = docs.map((doc: any) => Object.assign({}, { id: doc.id }, doc.data())) as ProductState[];
         this.SET_PRODUCTS(products);
       })
       .catch((error: IError) => {
@@ -61,10 +61,10 @@ class Product extends VuexModule implements ProductState {
 
   @Action
   public GetProductById(id: string): void {
-    productsCollection
+    fb.productsCollection
       .doc(id)
       .get()
-      .then((doc) => {
+      .then((doc: any) => {
         const product = Object.assign({}, { id: doc.id }, doc.data()) as ProductState;
         this.SET_PRODUCT(product);
       })

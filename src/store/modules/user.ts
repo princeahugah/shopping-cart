@@ -2,7 +2,7 @@ import { Module, VuexModule, Mutation, Action, getModule } from 'vuex-module-dec
 import store from '../index';
 import { UserState } from '../../services/interfaces/UserState';
 import { IError } from '../../services/interfaces/Error';
-import * as fb from '../../services/firebase';
+import fb from '../../services/firebase';
 import * as firebase from 'firebase/app';
 
 @Module({ name: 'user', store, dynamic: true })
@@ -31,7 +31,7 @@ class User extends VuexModule implements UserState {
     return fb.usersCollection
       .doc(id)
       .get()
-      .then((userProfile) => {
+      .then((userProfile: any) => {
         this.SET_USER_PROFILE(Object.assign({}, { id: userProfile.id }, userProfile.data()));
       })
       .catch((error: IError) => {

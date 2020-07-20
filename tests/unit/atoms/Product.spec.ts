@@ -1,24 +1,12 @@
 import Vue from 'vue';
-import Vuetify from 'vuetify';
-import { mount, createLocalVue, Wrapper } from '@vue/test-utils';
+import { Wrapper } from '@vue/test-utils';
+import mountFunction from '../helpers/mountComponent';
 import { expect } from 'chai';
 import Product from '@/components/atoms/Product.vue';
 import { ProductState } from '@/services/interfaces/ProductState';
 
-Vue.use(Vuetify);
-const localVue = createLocalVue();
-const vuetify = new Vuetify();
-
 describe('Product.vue', () => {
   describe('When the component is rendered', () => {
-    const mountFunction = (options: any) => {
-      return mount(Product, {
-        localVue,
-        vuetify,
-        ...options
-      });
-    };
-
     const product: ProductState = {
       id: '1',
       title: 'Fullstack Hoodie',
@@ -29,7 +17,8 @@ describe('Product.vue', () => {
 
     let wrapper: Wrapper<Vue>;
     beforeEach(() => {
-      wrapper = mountFunction({
+      wrapper = mountFunction(Product, {
+        useMount: true,
         propsData: {
           product
         }

@@ -12,15 +12,19 @@ const firebaseConfig = {
   appId: '1:796626809357:web:618b43efebe1e195f9db44'
 };
 
-firebase.initializeApp(firebaseConfig);
+let firebaseService: any = { db: {}, auth: {}, usersCollection: {}, productsCollection: {}, ordersCollection: {} };
+// initializeApp and firestore are only available within the context of a browser
+// this means we would be unable to run tests for components importing this module
+if (firebase.initializeApp && firebase.firestore) {
+  firebase.initializeApp(firebaseConfig);
 
-// utils
-const db = firebase.firestore();
-const auth = firebase.auth();
+  const db = firebase.firestore();
+  const auth = firebase.auth();
+  const usersCollection = db.collection('users');
+  const productsCollection = db.collection('products');
+  const ordersCollection = db.collection('orders');
 
-// collection references
-const usersCollection = db.collection('users');
-const productsCollection = db.collection('products');
+  firebaseService = { db, auth, usersCollection, productsCollection, ordersCollection };
+}
 
-// export utils/refs
-export { db, auth, usersCollection, productsCollection };
+export default firebaseService;

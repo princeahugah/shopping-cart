@@ -1,7 +1,6 @@
 import Vue from 'vue';
-import VueRouter from 'vue-router';
-import Vuetify from 'vuetify';
-import { mount, createLocalVue, Wrapper } from '@vue/test-utils';
+import { Wrapper } from '@vue/test-utils';
+import mountFunction from './helpers/mountComponent';
 import { expect } from 'chai';
 import ProductListing from '@/components/ProductListing.vue';
 import Product from '@/components/atoms/Product.vue';
@@ -9,25 +8,8 @@ import { ProductState } from '@/services/interfaces/ProductState';
 import { CartModule } from '@/store/modules/cart';
 import sinon from 'sinon';
 
-Vue.use(Vuetify);
-
-const localVue = createLocalVue();
-localVue.use(VueRouter);
-
-const router = new VueRouter();
-const vuetify = new Vuetify();
-
 describe('ProductListing.vue', () => {
   describe('When the component is rendered', () => {
-    const mountFunction = (options: any) => {
-      return mount(ProductListing, {
-        localVue,
-        router,
-        vuetify,
-        ...options
-      });
-    };
-
     const products: ProductState[] = [
       {
         id: '1',
@@ -54,7 +36,7 @@ describe('ProductListing.vue', () => {
 
     let wrapper: Wrapper<Vue>;
     beforeEach(() => {
-      wrapper = mountFunction({
+      wrapper = mountFunction(ProductListing, {
         propsData: {
           products
         }
@@ -63,7 +45,7 @@ describe('ProductListing.vue', () => {
 
     it('should display 3 product components', () => {
       const listedProducts = wrapper.findAllComponents(Product);
-      expect(listedProducts.length).to.equal(3);
+      expect(listedProducts.length).to.equal(products.length);
     });
 
     it('should display the the total number of products', () => {

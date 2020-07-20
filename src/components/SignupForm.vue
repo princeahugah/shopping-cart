@@ -16,7 +16,7 @@
                 <v-card>
                     <v-snackbar v-if="errorMessage"
                                 absolute
-                                class="mb-4"
+                                class="mb-4 error-message"
                                 color="error"
                                 elevation="0"
                                 @input="errorMessage = null"
@@ -31,7 +31,7 @@
                         <v-text-field autocomplete="off"
                                       autofocus
                                       background-color=""
-                                      class="mb-3"
+                                      class="mb-3 fullname"
                                       clearable
                                       :error-messages="nameErrors"
                                       label="Full name"
@@ -42,7 +42,7 @@
                                       @blur="$v.form.name.$touch()" />
                         <v-text-field autocomplete="off"
                                       background-color=""
-                                      class="mb-3"
+                                      class="mb-3 email"
                                       clearable
                                       :error-messages="emailErrors"
                                       label="Email"
@@ -53,7 +53,7 @@
                                       @blur="$v.form.emailAddress.$touch()" />
                         <v-text-field :append-icon="showPassword ? mdiEye : mdiEyeOff"
                                       autocomplete="off"
-                                      class="mb-3"
+                                      class="mb-3 password"
                                       @click:append="showPassword = !showPassword"
                                       :error-messages="passwordErrors"
                                       label="Password"
@@ -87,7 +87,7 @@
   import { Component, Vue } from 'vue-property-decorator';
   import { UserModule } from '../store/modules/user';
   import { validationMixin } from 'vuelidate';
-  import { required, minLength, email } from 'vuelidate/lib/validators';
+  import { required, email } from 'vuelidate/lib/validators';
   import { mdiEye, mdiEyeOff } from '@mdi/js';
   import Logo from './atoms/Logo.vue';
   import { IError } from '../services/interfaces/Error';
@@ -99,7 +99,7 @@
       form: {
         name: { required },
         emailAddress: { required, email },
-        password: { required, minLength: minLength(6) }
+        password: { required }
       }
     }
   })
@@ -146,7 +146,6 @@
       const errors: string[] = [];
       if (!this.$v.form.password!.$dirty) return errors;
       if (!this.$v.form.password!.required) errors.push(this.requiredFieldMessage);
-      else if (!this.$v.form.password!.minLength) errors.push('Password must have at least 6 characters');
 
       return errors;
     }
@@ -159,12 +158,16 @@
       this.$v.$touch();
       if (!this.$v.$invalid) {
         this.loading = true;
-        UserModule.CreateUser(this.form).then(() => {
-          this.loading = false;
-          if (!UserModule.error) {
-            this.$router.push('/');
-          }
-        });
+        UserModule.CreateUser(this.form)
+          .then(() => {
+            this.loading = false;
+            if (!UserModule.error) {
+              this.$router.push('/');
+            }
+          })
+          .catch(() => {
+            //do nothing
+          });
       }
     }
   }

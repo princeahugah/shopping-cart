@@ -37,7 +37,7 @@
   import { Component, Vue } from 'vue-property-decorator';
   import { mdiAccountCircle, mdiCart } from '@mdi/js';
   import { CartModule } from '../../store/modules/cart';
-  import { auth } from '../../services/firebase';
+  import fb from '../../services/firebase';
 
   @Component
   export default class AppLayout extends Vue {
@@ -56,7 +56,7 @@
     }
 
     get displayName(): string {
-      return auth.currentUser!.displayName as string;
+      return fb.auth.currentUser!.displayName as string;
     }
   }
 </script>

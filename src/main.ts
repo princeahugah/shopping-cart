@@ -4,13 +4,13 @@ import router from './router';
 import store from './store';
 import vuetify from './plugins/vuetify';
 import VueMeta from 'vue-meta';
-import { auth } from './services/firebase';
+import fb from './services/firebase';
 
 Vue.use(VueMeta);
 Vue.config.productionTip = false;
 
 let app: Vue | null = null;
-auth.onAuthStateChanged(() => {
+fb.auth.onAuthStateChanged(() => {
   if (!app) {
     app = new Vue({
       router,

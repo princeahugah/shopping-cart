@@ -3,6 +3,7 @@ import store from '../index';
 import { CartItemState } from '../../services/interfaces/CartItemState';
 import { IError } from '../../services/interfaces/Error';
 import { ProductState } from '../../services/interfaces/ProductState';
+import fb from '../../services/firebase';
 
 @Module({ name: 'cart', store, dynamic: true })
 class Cart extends VuexModule implements CartItemState {
@@ -101,6 +102,18 @@ class Cart extends VuexModule implements CartItemState {
         this.REMOVE_PRODUCT_FROM_CART(cartItemIndex);
       }
     }
+  }
+
+  @Action
+  public Checkout(): Promise<string> {
+    return fb.ordersCollection
+      .add({
+        orderItems: this.cartItems,
+        orderDate: new Date(),
+        orderedBy: fb.auth.currentUser!.uid
+      })
+      .then((docRef: any) => docRef.id)
+      .catch((error: Error) => Promise.reject(error));
   }
 
   @Action

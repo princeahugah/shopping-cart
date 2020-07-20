@@ -18,7 +18,7 @@
         <div class="summary-footer pt-5">
             <div class="total-quantity">Total Quantity: <span class="text-primary">{{ cart.totalCartQuantity }}</span></div>
             <div class="remove-all"
-                 @click="removeAllItems">
+                 @click.prevent="removeAllItems">
                 <v-icon light
                         class="text-primary"
                         size="18">{{ mdiTrashCanOutline }}</v-icon>
@@ -26,10 +26,11 @@
             </div>
         </div>
         <v-btn v-if="cart.hasProducts"
-               class="mt-5"
+               class="mt-5 checkout-button"
                color="primary"
                depressed
                large
+               @click.native.prevent="checkout"
                width="100%">
             Checkout (
             <transition name="fade"
@@ -39,6 +40,14 @@
             </transition>
             )
         </v-btn>
+        <v-snackbar v-if="orderStatus.message"
+                    class="mb-4 error-message"
+                    :color="orderStatus.color"
+                    :timeout="10000"
+                    top
+                    :value="true">
+            {{ orderStatus.message }}
+        </v-snackbar>
     </div>
 </template>
 
@@ -55,6 +64,7 @@
   export default class ShoppingCartSummary extends Vue {
     mdiTrashCanOutline = mdiTrashCanOutline;
     cart = CartModule;
+    orderStatus: { color: 'success' | 'error'; message: string } = { color: 'success', message: '' };
 
     private increaseProductQuantity(cartItem: CartItemState): void {
       CartModule.IncreaseProductQuantity(cartItem.productId);
@@ -65,7 +75,21 @@
     }
 
     private removeAllItems(): void {
-      CartModule.RemoveAllCartItems();
+      this.cart.RemoveAllCartItems();
+    }
+
+    private checkout(): void {
+      const orderQuantity = CartModule.totalCartQuantity;
+      CartModule.Checkout()
+        .then((orderId: string) => {
+          this.orderStatus.color = 'success';
+          this.orderStatus.message = `You have successfully ordered ${orderQuantity} items. Your order code is ${orderId}`;
+          CartModule.RemoveAllCartItems();
+        })
+        .catch(() => {
+          this.orderStatus.color = 'error';
+          this.orderStatus.message = `Sorry, your order was not successful.`;
+        });
     }
   }
 </script>

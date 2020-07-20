@@ -16,7 +16,7 @@
                 <v-card>
                     <v-snackbar v-if="errorMessage"
                                 absolute
-                                class="mb-4"
+                                class="mb-4 error-message"
                                 color="error"
                                 elevation="0"
                                 @input="errorMessage = null"
@@ -30,7 +30,7 @@
                     <v-form @submit.prevent="submitForm">
                         <v-text-field autocomplete="off"
                                       background-color=""
-                                      class="mb-3"
+                                      class="mb-3 email"
                                       clearable
                                       :error-messages="emailErrors"
                                       label="Email"
@@ -41,7 +41,7 @@
                                       @blur="$v.form.emailAddress.$touch()" />
                         <v-text-field :append-icon="showPassword ? mdiEye : mdiEyeOff"
                                       autocomplete="off"
-                                      class="mb-2"
+                                      class="mb-2 password"
                                       @click:append="showPassword = !showPassword"
                                       :error-messages="passwordErrors"
                                       label="Password"

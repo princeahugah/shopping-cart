@@ -2,6 +2,7 @@
     <v-container class="product-details"
                  :class="{loading: !product.id}">
         <v-progress-circular v-if="!product.id"
+                             class="progress-loader"
                              :size="70"
                              value="60"
                              color="primary"
@@ -15,10 +16,14 @@
                    lg="8"
                    xl="6">
                 <v-card elevation="1">
-                    <v-icon light
-                            size="30"
-                            color="primary"
-                            @click="backToProducts">{{ mdiArrowLeftThick }}</v-icon>
+                    <span class="back-icon"
+                          @click.prevent="backToProducts">
+                        <v-icon light
+                                size="30"
+                                color="primary">
+                            {{ mdiArrowLeftThick }}
+                        </v-icon>
+                    </span>
                     <v-row>
                         <v-col cols="12"
                                sm="12"
@@ -37,10 +42,10 @@
                                     Founded: <span>{{ product.founded }}</span>
                                 </div>
                                 <v-btn color="primary"
-                                       class="mt-4 mb-5"
+                                       class="mt-4 mb-5 addToCart"
                                        depressed
                                        large
-                                       @click="addToCart">
+                                       @click.native.prevent="addToCart">
                                     Add to Cart
                                 </v-btn>
                             </div>
@@ -51,7 +56,8 @@
                                md="6"
                                lg="5"
                                xl="5">
-                            <v-img :src="product.imageUrl" />
+                            <v-img class="product-image"
+                                   :src="product.imageUrl" />
                         </v-col>
                     </v-row>
                 </v-card>
@@ -69,7 +75,7 @@
   @Component({
     components: {},
     metaInfo: {
-      title: 'Product Details'
+      title: 'Routing - Shopping Cart'
     }
   })
   export default class ProductDetails extends Vue {
@@ -89,7 +95,7 @@
       this.$router.push('/');
     }
 
-    private addToCart() {
+    private addToCart(): void {
       CartModule.AddProductToCart({
         id: this.product.id,
         title: this.product.title,

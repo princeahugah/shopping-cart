@@ -1,24 +1,12 @@
 import Vue from 'vue';
-import Vuetify from 'vuetify';
-import { mount, createLocalVue, Wrapper } from '@vue/test-utils';
+import { Wrapper } from '@vue/test-utils';
+import mountFunction from '../helpers/mountComponent';
 import { expect } from 'chai';
 import CartItem from '@/components/atoms/CartItem.vue';
 import { CartItemState } from '@/services/interfaces/CartItemState';
 
-Vue.use(Vuetify);
-const localVue = createLocalVue();
-const vuetify = new Vuetify();
-
 describe('CartItem.vue', () => {
   describe('When the component is rendered', () => {
-    const mountFunction = (options: any) => {
-      return mount(CartItem, {
-        localVue,
-        vuetify,
-        ...options
-      });
-    };
-
     const cartItem: CartItemState = {
       productId: '1',
       productTitle: 'Fullstack Hoodie',
@@ -29,7 +17,8 @@ describe('CartItem.vue', () => {
 
     let wrapper: Wrapper<Vue>;
     beforeEach(() => {
-      wrapper = mountFunction({
+      wrapper = mountFunction(CartItem, {
+        useMount: true,
         propsData: {
           cartItem
         }

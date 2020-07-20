@@ -7,7 +7,7 @@ import Signin from '../views/auth/Signin.vue';
 import Signup from '../views/auth/Signup.vue';
 import ShoppingCart from '../views/ShoppingCart.vue';
 import ProductDetails from '../views/ProductDetails.vue';
-import { auth } from '../services/firebase';
+import fb from '../services/firebase';
 
 Vue.use(VueRouter);
 
@@ -68,16 +68,16 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   if (to.path === '/signout') {
-    auth.signOut().then(() => {
+    fb.auth.signOut().then(() => {
       window.location.href = '/';
     });
   } else {
     const requiresAuth = to.matched.some((record) => record.meta.requiresAuth);
 
-    if (requiresAuth && !auth.currentUser) {
+    if (requiresAuth && !fb.auth.currentUser) {
       return next(`/signin/?redirect=${to.fullPath}`);
     }
-    if (!requiresAuth && auth.currentUser) {
+    if (!requiresAuth && fb.auth.currentUser) {
       if (to.query.redirect) {
         return next(to.query.redirect as string);
       }
