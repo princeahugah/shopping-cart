@@ -42,6 +42,4 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### Access the online site here
 
-```
-https://shopping-cart-af2dc.netlify.app/
-```
+Directly on a server [http://shoppingcart.princeahugah.com](http://shoppingcart.princeahugah.com) OR on netlify [https://shopping-cart-af2dc.netlify.app/](https://shopping-cart-af2dc.netlify.app/)
