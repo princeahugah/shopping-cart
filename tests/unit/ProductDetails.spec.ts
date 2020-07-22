@@ -34,7 +34,7 @@ describe('ProductDetails.vue', () => {
     describe('-', () => {
       let wrapper: Wrapper<Vue>;
       beforeEach(() => {
-        ProductModule.GetProductById = function (productId) {
+        ProductModule.GetProductById = function () {
           (this as any).SET_PRODUCT(product);
         };
         wrapper = mountFunction(ProductDetails, {
