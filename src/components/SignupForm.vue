@@ -157,7 +157,11 @@
           .then(() => {
             this.loading = false;
             if (!UserModule.error) {
-              this.$router.push('/');
+              if (this.$route.query.redirect) {
+                this.$router.push(this.$route.query.redirect as string);
+              } else {
+                this.$router.push('/');
+              }
             }
           })
           .catch(() => {
