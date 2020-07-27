@@ -84,8 +84,8 @@ class Product extends VuexModule implements ProductState {
     };
   }
 
-  @Action({ commit: 'SET_ERROR' })
-  public ClearError() {
+  @Action
+  public ClearError(): void {
     this.SET_ERROR(null);
   }
 }

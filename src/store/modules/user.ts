@@ -61,8 +61,8 @@ class User extends VuexModule implements UserState {
     }
   }
 
-  @Action({ commit: 'SET_ERROR' })
-  public ClearError() {
+  @Action
+  public ClearError(): void {
     this.SET_ERROR(null);
   }
 }

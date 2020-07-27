@@ -24,6 +24,7 @@
                         :class="{'has-error': !!errorMessage}">Sign in</h2>
                     <v-form @submit.prevent="submitForm">
                         <v-text-field autocomplete="off"
+                                      autofocus
                                       background-color=""
                                       class="mb-3 email"
                                       clearable

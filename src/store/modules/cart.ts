@@ -121,8 +121,8 @@ class Cart extends VuexModule implements CartItemState {
     this.CLEAR_CART();
   }
 
-  @Action({ commit: 'SET_ERROR' })
-  public ClearError() {
+  @Action
+  public ClearError(): void {
     this.SET_ERROR(null);
   }
 }
