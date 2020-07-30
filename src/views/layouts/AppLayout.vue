@@ -2,8 +2,7 @@
     <transition name="fade"
                 mode="out-in">
         <v-main class="d-flex justify-center align-center">
-            <div class="toolbar pl-5 pt-1 pr-2"
-                 v-if="$route.name === 'ProductDetails'">
+            <div class="toolbar pl-5 pt-1 pr-2">
                 <router-link to="/signout"
                              class="text-primary">
                     Logout
